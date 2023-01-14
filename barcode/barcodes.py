@@ -1,7 +1,7 @@
 # imports ----------
 
 # import EAN13 from barcode module for EAN13 support
-from barcode import EAN13
+from barcode import EAN8
 # import ImageWriter to generate an image file
 from barcode.writer import ImageWriter
 # computer vision to show the barcode image
@@ -19,7 +19,7 @@ def create_barcode(number_id, image_name):
     # Now, let's create an object of EAN13 class and 
     # pass the number with the ImageWriter() as the 
     # writer
-    my_code = EAN13(number_id, writer=ImageWriter())
+    my_code = EAN8(number_id, writer=ImageWriter())
     
     # Our barcode is ready. Let's save it.
     my_code.save(f"{image_name}")
@@ -51,7 +51,7 @@ def read_barcode(image):
             if barcode.data!="":
                 # NOTE show_image has been commented out but can be called
                 # show_barcodes(img)
-                return barcode.data
+                return barcode.data.decode("utf-8")
     
     
     
@@ -62,7 +62,7 @@ def show_barcodes(img):
     cv2.destroyAllWindows()
 
 def main():
-    create_barcode('5901234123457', '5901234123457')
+    create_barcode('59012341', '59012341')
 
     image="download.png"
 

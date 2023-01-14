@@ -64,9 +64,6 @@ def show_barcodes(img):
 def main():
     create_barcode('59012341', '59012341')
 
-    image="download.png"
+    image="59012341.png"
 
     print(read_barcode(image))
-
-
-main()

@@ -1,4 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'package:flutter_app/camera_page.dart';
+
+// Camera stuff I can't use yet
+// // Ensure that plugin services are initialized so that `availableCameras()`
+// // can be called before `runApp()`
+// WidgetsFlutterBinding.ensureInitialized();
+//
+// // Obtain a list of the available cameras on the device.
+// final cameras = await availableCameras();
+//
+// // Get a specific camera from the list of available cameras.
+// final firstCamera = cameras.first;
+
+
 
 void main() {
   runApp(const MyApp());
@@ -6,6 +21,8 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+
 
   // This widget is the root of your application.
   @override
@@ -22,9 +39,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Drugz for Dayz'),
     );
   }
 }
@@ -94,16 +111,20 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+          children: <Widget> [ElevatedButton(
+            onPressed: () async {
+              await availableCameras().then(
+                    (value) => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CameraPage(cameras: value,),
+                  ),
+                ),
+              );
+            },
+            child: const Text('Launch Camera'),
+          ),
+        ]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
@@ -113,3 +134,29 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
+// on CameraException catch (e) {
+// switch (e.code) {
+// case 'CameraAccessDenied':
+// showInSnackBar('You have denied camera access.');
+// break;
+
+
+
+// Extra stuff to make camera work (all copied from web)
+//@override
+// void didChangeAppLifecycleState(AppLifecycleState state) {
+//   final CameraController? cameraController = controller;
+//
+//   // App state changed before we got the chance to initialize.
+//   if (cameraController == null || !cameraController.value.isInitialized) {
+//     return;
+//   }
+//
+//   if (state == AppLifecycleState.inactive) {
+//     cameraController.dispose();
+//   } else if (state == AppLifecycleState.resumed) {
+//     onNewCameraSelected(cameraController.description);
+//   }
+// }

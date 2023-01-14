@@ -16,7 +16,7 @@ def build_database(size):
         }
 
     df = pd.DataFrame(data)
-    return df;
+    return df
 
 def check_medication(image, df):
     destination = barcodes.read_barcode(image)
@@ -25,9 +25,11 @@ def check_medication(image, df):
     # return for the interaction list of the drug, comment out the other to use
     return(df.loc[df['barcode_id'] == destination]['negative_interactions'].values)
 
+def build_database_real(csv_file_path):
+    df = pd.read_csv(csv_file_path)
+    return df
+
 def main():
     df = build_database(5)
 
     print(check_medication("59012341.png", df))
-
-main()

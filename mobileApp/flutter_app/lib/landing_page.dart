@@ -31,32 +31,130 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
             color: primaryColour,
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.only(left: 100),
+                  decoration: BoxDecoration(
+                      color: secondaryColour,
+                      borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(80))),
+                ),
+              ),
               Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(left: 40),
+                alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.only(left: 40, top: 80),
                 child: Icon(Icons.camera_alt_rounded,
                     size: 100, color: Colors.white),
               ),
               Container(
                 padding: EdgeInsets.all(40),
                 child: Text(
-                  "Scan your medications barcode",
+                  "You scan your medications barcode",
                   style: titles,
                 ),
               ),
               Container(
-                height: 30,
-                width: 80,
-                decoration: BoxDecoration(
-                    color: secondaryColour,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-              )
+                  height: 40,
+                  width: 130,
+                  decoration: BoxDecoration(
+                      color: secondaryColour,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Center(
+                    child: Text(
+                      "Swipe",
+                      textAlign: TextAlign.center,
+                      style: textbox2,
+                    ),
+                  )),
+              Expanded(flex: 1, child: Container())
             ]),
           ),
           Container(
             color: Color.fromARGB(255, 73, 102, 75),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.only(left: 100),
+                  decoration: BoxDecoration(
+                      color: secondaryColour,
+                      borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(80))),
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.only(left: 40, top: 80),
+                child: Icon(Icons.search, size: 100, color: Colors.white),
+              ),
+              Container(
+                padding: EdgeInsets.all(40),
+                child: Text(
+                  "We search the web for any risks",
+                  style: titles,
+                ),
+              ),
+              Container(
+                  height: 40,
+                  width: 130,
+                  decoration: BoxDecoration(
+                      color: secondaryColour,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Center(
+                    child: Text(
+                      "Swipe",
+                      textAlign: TextAlign.center,
+                      style: textbox2,
+                    ),
+                  )),
+              Expanded(flex: 1, child: Container())
+            ]),
           ),
-          Container(color: Color(0xffC1E1C1))
+          Container(
+            color: Color(0xffC1E1C1),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.only(left: 100),
+                  decoration: BoxDecoration(
+                      color: secondaryColour,
+                      borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(80))),
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomLeft,
+                padding: EdgeInsets.only(left: 40, top: 80),
+                child: Icon(Icons.stay_current_portrait_rounded,
+                    size: 100, color: Colors.white),
+              ),
+              Container(
+                padding: EdgeInsets.all(40),
+                child: Text(
+                  "And display it to you in a second.",
+                  style: titles,
+                ),
+              ),
+              Container(
+                  height: 40,
+                  width: 130,
+                  decoration: BoxDecoration(
+                      color: secondaryColour,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Center(
+                    child: Text(
+                      "Swipe",
+                      textAlign: TextAlign.center,
+                      style: textbox2,
+                    ),
+                  )),
+              Expanded(flex: 1, child: Container())
+            ]),
+          )
         ],
       ),
     );

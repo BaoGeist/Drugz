@@ -29,6 +29,7 @@ class _InfoPageState extends State<InfoPage> {
 
   File? file;
   ImagePicker image = ImagePicker();
+  String medText = 'This is where your medication information would go if you had any. Sucks to suck.';
 
 
   @override
@@ -77,18 +78,7 @@ class _InfoPageState extends State<InfoPage> {
           // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-        Expanded(
-        child: Align(
-            alignment: Alignment.bottomCenter,
-            child: MaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Colors.amber[900],
-                child: const Text("Go back"),
-              ),
-        ),
-        ),
+              Text(medText),
             ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

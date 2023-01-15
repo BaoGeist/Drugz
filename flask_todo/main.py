@@ -1,3 +1,4 @@
+### imports ----------
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
@@ -6,10 +7,11 @@ import requests
 import algorithm
 import barcodes
 
+### app setup ----------
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# actual code lmfao
+### test and delivery code ----------
 
 @app.route('/test', methods=['POST'])
 def test():
@@ -22,7 +24,7 @@ def picture():
     image_location = request.form['img_loc']
     return algorithm.check_medication_from_outside(image_location)
 
-# SQL, alchemy and marshmallow implementation; code that we followed
+### SQL, alchemy and marshmallow implementation; code that we looked at as an example ----------
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 

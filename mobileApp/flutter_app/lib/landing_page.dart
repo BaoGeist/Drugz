@@ -147,7 +147,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                   child: Center(
                     child: Text(
-                      "Swipe",
+                      "Get Started",
                       textAlign: TextAlign.center,
                       style: textbox2,
                     ),

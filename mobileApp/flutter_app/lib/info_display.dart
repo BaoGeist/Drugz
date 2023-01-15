@@ -5,8 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
-
 class InfoPage extends StatefulWidget {
   const InfoPage({super.key, required this.title});
 
@@ -26,26 +24,37 @@ class InfoPage extends StatefulWidget {
 }
 
 class _InfoPageState extends State<InfoPage> {
-
   File? file;
   ImagePicker image = ImagePicker();
-  String medText = 'This is where your medication information would go if you had any. Sucks to suck.';
-
+  String medText =
+      'This is where your medication information would go if you had any. Sucks to suck.';
 
   @override
   Widget build(BuildContext context) {
+    postData() async {
+      // file = getImage() as File?;
 
-    () async {
-      file = getImage() as File?;
+      // // INSERT URL FOR REST API HERE
+      // var request =
+      // http.MultipartRequest("POST", Uri.parse("http://127.0.0.1:5000/"));
+      // request.files.add(http.MultipartFile.fromBytes(
+      //     "picture", File(file!.path).readAsBytesSync(), filename: file!.path));
 
-      // INSERT URL FOR REST API HERE
-      var request =
-      http.MultipartRequest("POST", Uri.parse("http://127.0.0.1:5000/"));
-      request.files.add(http.MultipartFile.fromBytes(
-          "picture", File(file!.path).readAsBytesSync(), filename: file!.path));
+      // var res = await request.send();
 
-      var res = await request.send();
-    };
+      // var client = http.Client();
+      // var uri = Uri.parse('http://10.0.2.2:5000');
+      // var response = await client.get(
+      //   uri,
+      //   headers: {'Content-Type': 'application/json'},
+      // );
+
+      var response = await http.post(Uri.parse('http://10.0.2.2:5000/picture'),
+          body: {"img_loc": "barcode_storage/6965131511316.png"});
+      print(response.body);
+    }
+
+    ;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -62,23 +71,31 @@ class _InfoPageState extends State<InfoPage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
+            // Column is also a layout widget. It takes a list of children and
+            // arranges them vertically. By default, it sizes itself to fit its
+            // children horizontally, and tries to be as tall as its parent.
+            //
+            // Invoke "debug painting" (press "p" in the console, choose the
+            // "Toggle Debug Paint" action from the Flutter Inspector in Android
+            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+            // to see the wireframe for each widget.
+            //
+            // Column has various properties to control how it sizes itself and
+            // how it positions its children. Here we use mainAxisAlignment to
+            // center the children vertically; the main axis here is the vertical
+            // axis because Columns are vertical (the cross axis would be
+            // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(medText),
+              MaterialButton(
+                onPressed: postData,
+                color: Colors.amber[900],
+                child: const Text("Check Medication",
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+              ),
             ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
@@ -92,7 +109,4 @@ class _InfoPageState extends State<InfoPage> {
     File file = File(image!.path);
     return file;
   }
-
-
-
 }

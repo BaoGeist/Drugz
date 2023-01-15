@@ -1,7 +1,7 @@
 # imports ----------
 
 # import EAN13 from barcode module for EAN13 support
-from barcode import EAN8
+from barcode import EAN13
 # import ImageWriter to generate an image file
 from barcode.writer import ImageWriter
 # computer vision to show the barcode image
@@ -12,17 +12,19 @@ from pyzbar.pyzbar import decode
 
 # global variables ----------
 global barcode_storage_variable
-barcode_storage_variable = "barcode_storage/"
+barcode_storage_variable = "barcode/barcode_storage/"
 
 # create a barcode from a 13-digit code, and saves it as an image
 def create_barcode(number_id, image_name):
-    # Now, let's create an object of EAN13 class and 
+    # Now, let's create an object of EAN8 class and 
     # pass the number with the ImageWriter() as the 
     # writer
-    my_code = EAN8(number_id, writer=ImageWriter())
+    print(number_id)
+    my_code = EAN13(number_id, writer=ImageWriter())
     
     # Our barcode is ready. Let's save it.
-    my_code.save(f"{image_name}")
+    save_string = barcode_storage_variable + image_name
+    my_code.save(save_string)
 
   
 # detects and decodes barcode
@@ -53,7 +55,8 @@ def read_barcode(image):
                 # show_barcodes(img)
                 return barcode.data.decode("utf-8")
     
-    
+def move_image(old_path, new_path):
+    pass
     
 # function to show the image
 def show_barcodes(img):
@@ -62,8 +65,9 @@ def show_barcodes(img):
     cv2.destroyAllWindows()
 
 def main():
-    create_barcode('59012341', '59012341')
+    create_barcode('7632267416356', '76322674')
+    # image="59012341.png"
 
-    image="59012341.png"
+    # print(read_barcode(image))
 
-    print(read_barcode(image))
+main()

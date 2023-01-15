@@ -1,10 +1,14 @@
+### imports ----------
 import barcodes
 import pandas as pd
 import random
 
 # BIG NOTE THIS FILE ALWAYS NEEDS TO BE RUN FROM INSIDE FLASK_TODO
 
-def build_database(size):
+### functions ----------
+
+# function for building fake databases, only needed for testing and before the real database was created
+def build_database(size: int) -> pd.DataFrame:
     list_barcode_id = []
     list_drug_name = ["isotretinon", "Hydrocodone-Acetaminophen", "Hydrochlorothiazide", "Atorvastatin Calcium", "Ventolin"]
     list_negative_interations = ['bad1, bad1, bad1', 'bad2 bad2 bad2', 'bad2 bad2 bad2', 'bad2 bad2 bad2', 'bad2 bad2 bad2']
@@ -20,13 +24,13 @@ def build_database(size):
     df = pd.DataFrame(data)
     return df
 
+# check medication from inside this same file
 def check_medication(image, df):
     string_return = ""
     destination = int(barcodes.read_barcode(image))
-    # return for the name of the drug, comment out the other to use
+    # drug name addition
     string_return += "Drug Name:\n" + df.loc[df['Code'] == destination]['Name'].values[0]
-    # return([df.loc[df['Code'] == destination]['Name'].values], [(df.loc[df['Code'] == destination]['Conflicts'].values)])
-    # return for the interaction list of the drug, comment out the other to use
+    # conflicts list addition
     string_return += "\nConflicts: \n" + df.loc[df['Code'] == destination]['Conflicts'].values[0].replace(";", "; ")
     return string_return
 
@@ -58,4 +62,4 @@ def main():
 # print(check_medication_from_outside("barcode_storage/6965131511316.png"))
 
 # general main call
-# main()
+main()

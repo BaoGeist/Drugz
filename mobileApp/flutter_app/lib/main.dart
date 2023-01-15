@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_app/camera_page.dart';
-
-// Camera stuff I can't use yet
-// // Ensure that plugin services are initialized so that `availableCameras()`
-// // can be called before `runApp()`
-// WidgetsFlutterBinding.ensureInitialized();
-//
-// // Obtain a list of the available cameras on the device.
-// final cameras = await availableCameras();
-//
-// // Get a specific camera from the list of available cameras.
-// final firstCamera = cameras.first;
+import 'package:flutter_app/info_display.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 
 
@@ -21,6 +14,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
 
 
 
@@ -41,7 +35,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Drugz for Dayz'),
+      home: const MyHomePage(title: 'Drugz 4 Dayz'),
     );
   }
 }
@@ -115,34 +109,32 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             child: const Text('Launch Camera'),
           ),
+            MaterialButton(
+                onPressed: () async {Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => InfoPage(title: "Drugz 4 Dayz"
+                    ),
+                  ),
+                );},
+                color: Colors.amber[900],
+              child: const Text("Check Medication", style: TextStyle(
+                color: Colors.white,
+              )),
+            ),
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+
+  // getgall() async {
+  //   // ignore: deprecated_member_use
+  //   var img = await image.getImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     file = File(img!.path);
+  //   });
+  // }
+
+
 }
-
-
-// on CameraException catch (e) {
-// switch (e.code) {
-// case 'CameraAccessDenied':
-// showInSnackBar('You have denied camera access.');
-// break;
-
-
-
-// Extra stuff to make camera work (all copied from web)
-//@override
-// void didChangeAppLifecycleState(AppLifecycleState state) {
-//   final CameraController? cameraController = controller;
-//
-//   // App state changed before we got the chance to initialize.
-//   if (cameraController == null || !cameraController.value.isInitialized) {
-//     return;
-//   }
-//
-//   if (state == AppLifecycleState.inactive) {
-//     cameraController.dispose();
-//   } else if (state == AppLifecycleState.resumed) {
-//     onNewCameraSelected(cameraController.description);
-//   }
-// }

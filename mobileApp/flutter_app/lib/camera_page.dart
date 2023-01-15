@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/info_display.dart';
 
 import 'package:gallery_saver/gallery_saver.dart';
 
@@ -300,16 +301,20 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             // Saves image once taken (not possible to put in next screen when reviewing the image because of 'const'.
             GallerySaver.saveImage(image.path, albumName: 'medication barcodes');
 
-            // If the picture was taken, display it on a new screen.
-            await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(
-                  // Pass the automatically generated path to
-                  // the DisplayPictureScreen widget.
-                  imagePath: image.path,
-                ),
-              ),
-            );
+            // Exit once photo is taken and saved to gallery.
+            Navigator.pop(context);
+
+
+                    // // If the picture was taken, display it on a new screen.
+            // await Navigator.of(context).push(
+            //   MaterialPageRoute(
+            //     builder: (context) => DisplayPictureScreen(
+            //       // Pass the automatically generated path to
+            //       // the DisplayPictureScreen widget.
+            //       imagePath: image.path,
+            //     ),
+            //   ),
+            // );
           } catch (e) {
             // If an error occurs, log the error to the console.
             print(e);
@@ -321,19 +326,19 @@ class TakePictureScreenState extends State<TakePictureScreen> {
   }
 }
 
-// A widget that displays the picture taken by the user.
-class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
-
-  const DisplayPictureScreen({super.key, required this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
-    );
-  }
-}
+// // A widget that displays the picture taken by the user.
+// class DisplayPictureScreen extends StatelessWidget {
+//   final String imagePath;
+//
+//   const DisplayPictureScreen({super.key, required this.imagePath});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text('Display the Picture')),
+//       // The image is stored as a file on the device. Use the `Image.file`
+//       // constructor with the given path to display the image.
+//       body: Image.file(File(imagePath)),
+//     );
+//   }
+// }

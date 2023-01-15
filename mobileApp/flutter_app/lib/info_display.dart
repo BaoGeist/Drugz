@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:flutter_app/camera_page.dart';
-import 'package:flutter_app/info_display.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-
+class ShowInfo extends StatelessWidget {
+  const ShowInfo({super.key});
 
 
   // This widget is the root of your application.
@@ -95,53 +86,21 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget> [ElevatedButton(
-            onPressed: () async {
-              await availableCameras().then(
-                    (value) => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TakePictureScreen(
-                      // Pass the appropriate camera to the TakePictureScreen widget.
-                      camera: value.first,
-                    ),
-                  ),
-                ),
-              );
-            },
-            child: const Text('Launch Camera'),
-          ),
-            MaterialButton(
-                onPressed: () {},
-                color: Colors.amber[900],
-              child: const Text("Check Medication"),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[ElevatedButton(
+              onPressed: () async {
+              },
+              child: const Text('Launch Camera'),
             ),
-        ]),
+              MaterialButton(
+                onPressed: () {
+
+                },
+                color: Colors.amber[900],
+                child: const Text("Get image"),
+              ),
+            ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
-
-  // getgall() async {
-  //   // ignore: deprecated_member_use
-  //   var img = await image.getImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     file = File(img!.path);
-  //   });
-  // }
-
-  // Once we're ready to show the info, goes to that screen.
-  showInfo(Image photo)  {
-        (value) => Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ShowInfo(
-        ),
-      ),
-    );
-  }
-
-
-
 }

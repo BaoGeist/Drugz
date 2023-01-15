@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_app/camera_page.dart';
 import 'package:flutter_app/info_display.dart';
+import 'package:flutter_app/landing_page.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -130,8 +131,6 @@ class CameraPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                ),
               );
             },
             child: const Text('Launch Camera'),

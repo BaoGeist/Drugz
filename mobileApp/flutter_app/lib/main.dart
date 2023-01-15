@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.green,
           fontFamily: 'DMSans'),
-      home: const MyHomePage(title: 'Drugz 4 Dayz'),
+      home: const MyHomePage(title: 'Medisafe'),
     );
   }
 }
@@ -137,7 +137,7 @@ class CameraPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => InfoPage(title: "Drugz 4 Dayz"),
+                      builder: (context) => InfoPage(title: "Medisafe"),
                     ),
                   );
                 },

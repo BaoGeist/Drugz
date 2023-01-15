@@ -13,11 +13,12 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Hack',
       theme: ThemeData(
         // This is the theme of your application.
@@ -67,11 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: pages[_currIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -131,28 +127,29 @@ class CameraPage extends StatelessWidget {
                         ),
                       ),
                     ),
-              );
-            },
-            child: const Text('Launch Camera'),
-          ),
-            MaterialButton(
-                onPressed: () async {Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => InfoPage(title: "Drugz 4 Dayz"
+                  );
+                },
+                child: const Text('Launch Camera'),
+              ),
+              MaterialButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => InfoPage(title: "Drugz 4 Dayz"),
                     ),
-                  ),
-                );},
+                  );
+                },
                 color: Colors.amber[900],
-              child: const Text("Check Medication", style: TextStyle(
-                color: Colors.white,
-              )),
-            ),
-        ]),
+                child: const Text("Check Medication",
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+              ),
+            ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
 
   // getgall() async {
   //   // ignore: deprecated_member_use
@@ -161,6 +158,5 @@ class CameraPage extends StatelessWidget {
   //     file = File(img!.path);
   //   });
   // }
-
 
 }

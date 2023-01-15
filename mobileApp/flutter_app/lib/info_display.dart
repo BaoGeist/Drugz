@@ -27,7 +27,7 @@ class _InfoPageState extends State<InfoPage> {
   File? file;
   ImagePicker image = ImagePicker();
   String medText =
-      'This is where your medication information would go if you had any. Sucks to suck.';
+      'Press the button below for your information';
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,10 @@ class _InfoPageState extends State<InfoPage> {
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(medText),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(medText),
+              ),
               MaterialButton(
                 onPressed: postData,
                 color: Colors.amber[900],

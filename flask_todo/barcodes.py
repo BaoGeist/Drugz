@@ -58,6 +58,7 @@ def show_barcodes(img: str) -> None:
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+# main
 def main():
     create_barcode('7632267416356', '7632267416356')
 

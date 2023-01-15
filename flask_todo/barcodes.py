@@ -1,4 +1,4 @@
-# imports ----------
+### imports ----------
 
 # import EAN13 from barcode module for EAN13 support
 from barcode import EAN13
@@ -10,25 +10,22 @@ import cv2
 from pyzbar.pyzbar import decode
 
 
-# global variables ----------
+### global variables ----------
 global barcode_storage_variable
 barcode_storage_variable = "Drugz/flask_todo/barcode_storage/"
 
+
+### functions ----------
 # create a barcode from a 13-digit code, and saves it as an image
-def create_barcode(number_id, image_name):
-    # Now, let's create an object of EAN8 class and 
-    # pass the number with the ImageWriter() as the 
-    # writer
-    print(number_id)
+# function used for creating new barcodes for new drugs
+def create_barcode(number_id: str, image_name: str) -> None:
+    # creating barcode with EAN13 configuration and saving it to a specific location
     my_code = EAN13(number_id, writer=ImageWriter())
-    
-    # Our barcode is ready. Let's save it.
     save_string = barcode_storage_variable + image_name
     my_code.save(save_string)
 
-  
 # detects and decodes barcode
-def read_barcode(image):
+def read_barcode(image: str) -> str:
      
     # read the image in numpy array using cv2
     img = cv2.imread(image)
@@ -55,18 +52,18 @@ def read_barcode(image):
                 # show_barcodes(img)
                 return barcode.data.decode("utf-8")
     
-def move_image(old_path, new_path):
-    pass
-    
 # function to show the image
-def show_barcodes(img):
+def show_barcodes(img: str) -> None:
     cv2.imshow("Image", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 def main():
     create_barcode('7632267416356', '7632267416356')
-    
-    # image="59012341.png"
 
+    # reading testing (image address out of date)
+    # image="59012341.png"
     # print(read_barcode(image))
+
+# commented out main call, only needed for individual testing
+# main()

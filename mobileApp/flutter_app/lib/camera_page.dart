@@ -4,6 +4,9 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import 'package:gallery_saver/gallery_saver.dart';
+
+
 //
 // class CameraPage extends StatefulWidget {
 //   final List<CameraDescription>? cameras;
@@ -294,6 +297,9 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 
             if (!mounted) return;
 
+            // Saves image once taken (not possible to put in next screen when reviewing the image because of 'const'.
+            GallerySaver.saveImage(image.path);
+
             // If the picture was taken, display it on a new screen.
             await Navigator.of(context).push(
               MaterialPageRoute(
@@ -331,5 +337,3 @@ class DisplayPictureScreen extends StatelessWidget {
     );
   }
 }
-
-

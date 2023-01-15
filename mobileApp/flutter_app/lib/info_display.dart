@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 
 
@@ -27,9 +29,23 @@ class _InfoPageState extends State<InfoPage> {
 
   File? file;
   ImagePicker image = ImagePicker();
+  String medText = 'This is where your medication information would go if you had any. Sucks to suck.';
+
 
   @override
   Widget build(BuildContext context) {
+
+    () async {
+      file = getImage() as File?;
+
+      // INSERT URL FOR REST API HERE
+      var request =
+      http.MultipartRequest("POST", Uri.parse("http://127.0.0.1:5000/"));
+      request.files.add(http.MultipartFile.fromBytes(
+          "picture", File(file!.path).readAsBytesSync(), filename: file!.path));
+
+      var res = await request.send();
+    };
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -62,20 +78,21 @@ class _InfoPageState extends State<InfoPage> {
           // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-        Expanded(
-        child: Align(
-            alignment: Alignment.bottomCenter,
-            child: MaterialButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Colors.amber[900],
-                child: const Text("Go back"),
-              ),
-        ),
-        ),
+              Text(medText),
             ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  Future<File> getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    // Pick an image
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    //TO convert Xfile into file
+    File file = File(image!.path);
+    return file;
+  }
+
+
+
 }

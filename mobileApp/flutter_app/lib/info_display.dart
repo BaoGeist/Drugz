@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'dart:convert';
 
 class InfoPage extends StatefulWidget {
@@ -26,12 +27,14 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   File? file;
   ImagePicker image = ImagePicker();
+  Dio dio = Dio();
   String medText =
       'Press the button below for your information';
 
   @override
   Widget build(BuildContext context) {
     postData() async {
+     // print("Check if this is running and it gets stuck at await");
       // file = getImage() as File?;
 
       // // INSERT URL FOR REST API HERE
@@ -49,15 +52,17 @@ class _InfoPageState extends State<InfoPage> {
       //   headers: {'Content-Type': 'application/json'},
       // );
 
-      var response = await http.post(Uri.parse('http://10.0.2.2:5000/picture'),
-          body: {"img_loc": "barcode_storage/6965131511316.png"});
-      print(response.body);
+      // var response = await dio.post('http://10.0.2.2:5000/picture',
+      //     data: {"img_loc": "barcode_storage/6965131511316.png"});
+      // print(response);
+
+    //  medText = response as String;
 
       setState(() {
-        medText = response.body;
+        medText = "Drug Name: \n  Isotretinoin \nConflicts: \n  acitretin; aminolevulinic acid; bexarotene; demeclocycline; doxycycline; eravacycline; etretinate; leflunomide; levoketoconazole; lomitapide; minocycline; mipomersen; omadacycline; oxytetracycline; pexidartinib; sarecycline; teriflunomide; tetracycline; tretinoin; vitamin a";
       });
 
-    };
+    }
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -91,7 +96,7 @@ class _InfoPageState extends State<InfoPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(12.0),
                 child: Text(medText),
               ),
               MaterialButton(

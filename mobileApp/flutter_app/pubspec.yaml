@@ -43,6 +43,7 @@ dependencies:
   gallery_saver: ^2.3.2
   image_picker: ^0.8.6
   http: ^0.13.5
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:

@@ -12,7 +12,7 @@ from pyzbar.pyzbar import decode
 
 # global variables ----------
 global barcode_storage_variable
-barcode_storage_variable = "barcode/barcode_storage/"
+barcode_storage_variable = "Drugz/barcode/barcode_storage/"
 
 # create a barcode from a 13-digit code, and saves it as an image
 def create_barcode(number_id, image_name):
@@ -65,9 +65,7 @@ def show_barcodes(img):
     cv2.destroyAllWindows()
 
 def main():
-    create_barcode('7632267416356', '76322674')
+    create_barcode('7632267416356', '7632267416356')
     # image="59012341.png"
 
     # print(read_barcode(image))
-
-main()

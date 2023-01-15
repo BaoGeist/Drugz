@@ -3,9 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os
 import requests
+import algorithm
+import barcodes
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+# actual code lmfao
 
 @app.route('/test', methods=['POST'])
 def test():
@@ -15,9 +19,10 @@ def test():
 
 @app.route('/picture', methods=['POST'])
 def picture():
-    number = request.form['number']
-    return_string = "medicine yeah bad dont do"
-    return return_string
+    image_location = request.form['img_loc']
+    return algorithm.check_medication_from_outside(image_location)
+
+# SQL, alchemy and marshmallow implementation; code that we followed
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 

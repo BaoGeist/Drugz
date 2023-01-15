@@ -298,7 +298,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             if (!mounted) return;
 
             // Saves image once taken (not possible to put in next screen when reviewing the image because of 'const'.
-            GallerySaver.saveImage(image.path);
+            GallerySaver.saveImage(image.path, albumName: 'medication barcodes');
 
             // If the picture was taken, display it on a new screen.
             await Navigator.of(context).push(

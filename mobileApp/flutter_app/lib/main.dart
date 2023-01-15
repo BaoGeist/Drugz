@@ -60,9 +60,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  File? file;
-  ImagePicker image = ImagePicker();
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -113,9 +110,17 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('Launch Camera'),
           ),
             MaterialButton(
-                onPressed: () {},
+                onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ShowInfo(
+                    ),
+                  ),
+                );},
                 color: Colors.amber[900],
-              child: const Text("Check Medication"),
+              child: const Text("Check Medication", style: TextStyle(
+                color: Colors.white,
+              )),
             ),
         ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -130,18 +135,6 @@ class _MyHomePageState extends State<MyHomePage> {
   //     file = File(img!.path);
   //   });
   // }
-
-  // Once we're ready to show the info, goes to that screen.
-  showInfo(Image photo)  {
-        (value) => Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ShowInfo(
-        ),
-      ),
-    );
-  }
-
 
 
 }

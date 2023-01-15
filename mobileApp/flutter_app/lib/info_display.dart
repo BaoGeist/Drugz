@@ -26,13 +26,13 @@ class ShowInfo extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Drugz 4 Dayz'),
+      home: const InfoPage(title: 'Drugz 4 Dayz'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class InfoPage extends StatefulWidget {
+  const InfoPage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -46,10 +46,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<InfoPage> createState() => _InfoPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _InfoPageState extends State<InfoPage> {
 
   File? file;
   ImagePicker image = ImagePicker();
@@ -87,18 +87,19 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[ElevatedButton(
-              onPressed: () async {
-              },
-              child: const Text('Launch Camera'),
-            ),
-              MaterialButton(
+            children: <Widget>[
+        Expanded(
+        child: Align(
+            alignment: Alignment.bottomCenter,
+            child: MaterialButton(
                 onPressed: () {
-
+                  Navigator.pop(context);
                 },
                 color: Colors.amber[900],
-                child: const Text("Get image"),
+                child: const Text("Go back"),
               ),
+        ),
+        ),
             ]),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

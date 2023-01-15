@@ -7,6 +7,18 @@ import requests
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+@app.route('/test', methods=['POST'])
+def test():
+    data = request.form['data']
+    datastring = data+data
+    return datastring
+
+@app.route('/picture', methods=['POST'])
+def picture():
+    number = request.form['number']
+    return_string = "medicine yeah bad dont do"
+    return return_string
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 
 
@@ -34,18 +46,6 @@ class TodoSchema(ma.Schema):
 # Initialize schema
 todo_schema = TodoSchema()
 todos_schema = TodoSchema(many=True)
-
-@app.route('/test', methods=['POST'])
-def test():
-    data = request.form['data']
-    datastring = data+data
-    return datastring
-
-@app.route('/picture', methods=['POST'])
-def picture():
-    number = request.form['number']
-    return_string = "medicine yeah bad dont do"
-    return return_string
 
 @app.route('/todo', methods=['POST'])
 def add_todo():

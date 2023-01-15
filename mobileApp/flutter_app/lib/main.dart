@@ -110,10 +110,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('Launch Camera'),
           ),
             MaterialButton(
-                onPressed: () {Navigator.push(
+                onPressed: () async {Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ShowInfo(
+                    builder: (context) => InfoPage(title: "Drugz 4 Dayz"
                     ),
                   ),
                 );},

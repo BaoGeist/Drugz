@@ -52,9 +52,12 @@ class _InfoPageState extends State<InfoPage> {
       var response = await http.post(Uri.parse('http://10.0.2.2:5000/picture'),
           body: {"img_loc": "barcode_storage/6965131511316.png"});
       print(response.body);
-    }
 
-    ;
+      setState(() {
+        medText = response.body;
+      });
+
+    };
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
